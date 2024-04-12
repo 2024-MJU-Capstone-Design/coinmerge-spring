@@ -1,13 +1,13 @@
-package CoinMerge.coinMergeKNKK;
+package CoinMerge.coinMergeSpring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CoinMergeKnkkApplication {
+public class CoinMergeSpringApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CoinMergeKnkkApplication.class, args);
+		SpringApplication.run(CoinMergeSpringApplication.class, args);
 	}
 
 }
