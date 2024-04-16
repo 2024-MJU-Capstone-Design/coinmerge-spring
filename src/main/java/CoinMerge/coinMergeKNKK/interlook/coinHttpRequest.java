@@ -1,4 +1,4 @@
-package CoinMerge.coinMergeKNKK.interlook.bithumb;/*
+package CoinMerge.coinMergeKNKK.interlook;/*
  * Copyright (c) 2014 Kevin Sawicki <kevinsawicki@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -93,7 +93,7 @@ import javax.net.ssl.X509TrustManager;
  * Each instance supports making a single request and cannot be reused for
  * further requests.
  */
-public class bithumb_HttpRequest {
+public class coinHttpRequest {
 
     /**
      * 'UTF-8' charset name
@@ -883,8 +883,8 @@ public class bithumb_HttpRequest {
      * This method ensures the path and query segments of the URL are properly
      * encoded such as ' ' characters being encoded to '%20' or any UTF-8
      * characters that are non-ASCII. No encoding of URLs is done by default by
-     * the {@link bithumb_HttpRequest} constructors and so if URL encoding is needed
-     * this method should be called before calling the {@link bithumb_HttpRequest}
+     * the {@link coinHttpRequest} constructors and so if URL encoding is needed
+     * this method should be called before calling the {@link coinHttpRequest}
      * constructor.
      *
      * @param url
@@ -997,9 +997,9 @@ public class bithumb_HttpRequest {
      * @return request
      * @throws HttpRequestException
      */
-    public static bithumb_HttpRequest get(final CharSequence url)
+    public static coinHttpRequest get(final CharSequence url)
 	    throws HttpRequestException {
-	return new bithumb_HttpRequest(url, METHOD_GET);
+	return new coinHttpRequest(url, METHOD_GET);
     }
 
     /**
@@ -1009,8 +1009,8 @@ public class bithumb_HttpRequest {
      * @return request
      * @throws HttpRequestException
      */
-    public static bithumb_HttpRequest get(final URL url) throws HttpRequestException {
-	return new bithumb_HttpRequest(url, METHOD_GET);
+    public static coinHttpRequest get(final URL url) throws HttpRequestException {
+	return new coinHttpRequest(url, METHOD_GET);
     }
 
     /**
@@ -1027,8 +1027,8 @@ public class bithumb_HttpRequest {
      *
      * @return request
      */
-    public static bithumb_HttpRequest get(final CharSequence baseUrl,
-										  final Map<?, ?> params, final boolean encode) {
+    public static coinHttpRequest get(final CharSequence baseUrl,
+									  final Map<?, ?> params, final boolean encode) {
 	String url = append(baseUrl, params);
 	return get(encode ? encode(url) : url);
     }
@@ -1048,8 +1048,8 @@ public class bithumb_HttpRequest {
      *
      * @return request
      */
-    public static bithumb_HttpRequest get(final CharSequence baseUrl,
-										  final boolean encode, final Object... params) {
+    public static coinHttpRequest get(final CharSequence baseUrl,
+									  final boolean encode, final Object... params) {
 	String url = append(baseUrl, params);
 	return get(encode ? encode(url) : url);
     }
@@ -1061,9 +1061,9 @@ public class bithumb_HttpRequest {
      * @return request
      * @throws HttpRequestException
      */
-    public static bithumb_HttpRequest post(final CharSequence url)
+    public static coinHttpRequest post(final CharSequence url)
 	    throws HttpRequestException {
-	return new bithumb_HttpRequest(url, METHOD_POST);
+	return new coinHttpRequest(url, METHOD_POST);
     }
 
     /**
@@ -1073,8 +1073,8 @@ public class bithumb_HttpRequest {
      * @return request
      * @throws HttpRequestException
      */
-    public static bithumb_HttpRequest post(final URL url) throws HttpRequestException {
-	return new bithumb_HttpRequest(url, METHOD_POST);
+    public static coinHttpRequest post(final URL url) throws HttpRequestException {
+	return new coinHttpRequest(url, METHOD_POST);
     }
 
     /**
@@ -1091,8 +1091,8 @@ public class bithumb_HttpRequest {
      *
      * @return request
      */
-    public static bithumb_HttpRequest post(final CharSequence baseUrl,
-										   final Map<?, ?> params, final boolean encode) {
+    public static coinHttpRequest post(final CharSequence baseUrl,
+									   final Map<?, ?> params, final boolean encode) {
 	String url = append(baseUrl, params);
 	return post(encode ? encode(url) : url);
     }
@@ -1112,8 +1112,8 @@ public class bithumb_HttpRequest {
      *
      * @return request
      */
-    public static bithumb_HttpRequest post(final CharSequence baseUrl,
-										   final boolean encode, final Object... params) {
+    public static coinHttpRequest post(final CharSequence baseUrl,
+									   final boolean encode, final Object... params) {
 	String url = append(baseUrl, params);
 	return post(encode ? encode(url) : url);
     }
@@ -1125,9 +1125,9 @@ public class bithumb_HttpRequest {
      * @return request
      * @throws HttpRequestException
      */
-    public static bithumb_HttpRequest put(final CharSequence url)
+    public static coinHttpRequest put(final CharSequence url)
 	    throws HttpRequestException {
-	return new bithumb_HttpRequest(url, METHOD_PUT);
+	return new coinHttpRequest(url, METHOD_PUT);
     }
 
     /**
@@ -1137,8 +1137,8 @@ public class bithumb_HttpRequest {
      * @return request
      * @throws HttpRequestException
      */
-    public static bithumb_HttpRequest put(final URL url) throws HttpRequestException {
-	return new bithumb_HttpRequest(url, METHOD_PUT);
+    public static coinHttpRequest put(final URL url) throws HttpRequestException {
+	return new coinHttpRequest(url, METHOD_PUT);
     }
 
     /**
@@ -1155,8 +1155,8 @@ public class bithumb_HttpRequest {
      *
      * @return request
      */
-    public static bithumb_HttpRequest put(final CharSequence baseUrl,
-										  final Map<?, ?> params, final boolean encode) {
+    public static coinHttpRequest put(final CharSequence baseUrl,
+									  final Map<?, ?> params, final boolean encode) {
 	String url = append(baseUrl, params);
 	return put(encode ? encode(url) : url);
     }
@@ -1176,8 +1176,8 @@ public class bithumb_HttpRequest {
      *
      * @return request
      */
-    public static bithumb_HttpRequest put(final CharSequence baseUrl,
-										  final boolean encode, final Object... params) {
+    public static coinHttpRequest put(final CharSequence baseUrl,
+									  final boolean encode, final Object... params) {
 	String url = append(baseUrl, params);
 	return put(encode ? encode(url) : url);
     }
@@ -1189,9 +1189,9 @@ public class bithumb_HttpRequest {
      * @return request
      * @throws HttpRequestException
      */
-    public static bithumb_HttpRequest delete(final CharSequence url)
+    public static coinHttpRequest delete(final CharSequence url)
 	    throws HttpRequestException {
-	return new bithumb_HttpRequest(url, METHOD_DELETE);
+	return new coinHttpRequest(url, METHOD_DELETE);
     }
 
     /**
@@ -1201,8 +1201,8 @@ public class bithumb_HttpRequest {
      * @return request
      * @throws HttpRequestException
      */
-    public static bithumb_HttpRequest delete(final URL url) throws HttpRequestException {
-	return new bithumb_HttpRequest(url, METHOD_DELETE);
+    public static coinHttpRequest delete(final URL url) throws HttpRequestException {
+	return new coinHttpRequest(url, METHOD_DELETE);
     }
 
     /**
@@ -1219,8 +1219,8 @@ public class bithumb_HttpRequest {
      *
      * @return request
      */
-    public static bithumb_HttpRequest delete(final CharSequence baseUrl,
-											 final Map<?, ?> params, final boolean encode) {
+    public static coinHttpRequest delete(final CharSequence baseUrl,
+										 final Map<?, ?> params, final boolean encode) {
 	String url = append(baseUrl, params);
 	return delete(encode ? encode(url) : url);
     }
@@ -1240,8 +1240,8 @@ public class bithumb_HttpRequest {
      *
      * @return request
      */
-    public static bithumb_HttpRequest delete(final CharSequence baseUrl,
-											 final boolean encode, final Object... params) {
+    public static coinHttpRequest delete(final CharSequence baseUrl,
+										 final boolean encode, final Object... params) {
 	String url = append(baseUrl, params);
 	return delete(encode ? encode(url) : url);
     }
@@ -1253,9 +1253,9 @@ public class bithumb_HttpRequest {
      * @return request
      * @throws HttpRequestException
      */
-    public static bithumb_HttpRequest head(final CharSequence url)
+    public static coinHttpRequest head(final CharSequence url)
 	    throws HttpRequestException {
-	return new bithumb_HttpRequest(url, METHOD_HEAD);
+	return new coinHttpRequest(url, METHOD_HEAD);
     }
 
     /**
@@ -1265,8 +1265,8 @@ public class bithumb_HttpRequest {
      * @return request
      * @throws HttpRequestException
      */
-    public static bithumb_HttpRequest head(final URL url) throws HttpRequestException {
-	return new bithumb_HttpRequest(url, METHOD_HEAD);
+    public static coinHttpRequest head(final URL url) throws HttpRequestException {
+	return new coinHttpRequest(url, METHOD_HEAD);
     }
 
     /**
@@ -1283,8 +1283,8 @@ public class bithumb_HttpRequest {
      *
      * @return request
      */
-    public static bithumb_HttpRequest head(final CharSequence baseUrl,
-										   final Map<?, ?> params, final boolean encode) {
+    public static coinHttpRequest head(final CharSequence baseUrl,
+									   final Map<?, ?> params, final boolean encode) {
 	String url = append(baseUrl, params);
 	return head(encode ? encode(url) : url);
     }
@@ -1304,8 +1304,8 @@ public class bithumb_HttpRequest {
      *
      * @return request
      */
-    public static bithumb_HttpRequest head(final CharSequence baseUrl,
-										   final boolean encode, final Object... params) {
+    public static coinHttpRequest head(final CharSequence baseUrl,
+									   final boolean encode, final Object... params) {
 	String url = append(baseUrl, params);
 	return head(encode ? encode(url) : url);
     }
@@ -1317,9 +1317,9 @@ public class bithumb_HttpRequest {
      * @return request
      * @throws HttpRequestException
      */
-    public static bithumb_HttpRequest options(final CharSequence url)
+    public static coinHttpRequest options(final CharSequence url)
 	    throws HttpRequestException {
-	return new bithumb_HttpRequest(url, METHOD_OPTIONS);
+	return new coinHttpRequest(url, METHOD_OPTIONS);
     }
 
     /**
@@ -1329,9 +1329,9 @@ public class bithumb_HttpRequest {
      * @return request
      * @throws HttpRequestException
      */
-    public static bithumb_HttpRequest options(final URL url)
+    public static coinHttpRequest options(final URL url)
 	    throws HttpRequestException {
-	return new bithumb_HttpRequest(url, METHOD_OPTIONS);
+	return new coinHttpRequest(url, METHOD_OPTIONS);
     }
 
     /**
@@ -1341,9 +1341,9 @@ public class bithumb_HttpRequest {
      * @return request
      * @throws HttpRequestException
      */
-    public static bithumb_HttpRequest trace(final CharSequence url)
+    public static coinHttpRequest trace(final CharSequence url)
 	    throws HttpRequestException {
-	return new bithumb_HttpRequest(url, METHOD_TRACE);
+	return new coinHttpRequest(url, METHOD_TRACE);
     }
 
     /**
@@ -1353,8 +1353,8 @@ public class bithumb_HttpRequest {
      * @return request
      * @throws HttpRequestException
      */
-    public static bithumb_HttpRequest trace(final URL url) throws HttpRequestException {
-	return new bithumb_HttpRequest(url, METHOD_TRACE);
+    public static coinHttpRequest trace(final URL url) throws HttpRequestException {
+	return new coinHttpRequest(url, METHOD_TRACE);
     }
 
     /**
@@ -1492,7 +1492,7 @@ public class bithumb_HttpRequest {
      *            HTTP request method (e.g., "GET", "POST").
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest(final CharSequence url, final String method)
+    public coinHttpRequest(final CharSequence url, final String method)
 	    throws HttpRequestException {
 	try {
 	    this.url = new URL(url.toString());
@@ -1511,7 +1511,7 @@ public class bithumb_HttpRequest {
      *            HTTP request method (e.g., "GET", "POST").
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest(final URL url, final String method)
+    public coinHttpRequest(final URL url, final String method)
 	    throws HttpRequestException {
 	this.url = url;
 	this.requestMethod = method;
@@ -1561,7 +1561,7 @@ public class bithumb_HttpRequest {
      * @param ignore
      * @return this request
      */
-    public bithumb_HttpRequest ignoreCloseExceptions(final boolean ignore) {
+    public coinHttpRequest ignoreCloseExceptions(final boolean ignore) {
 	ignoreCloseExceptions = ignore;
 	return this;
     }
@@ -1599,7 +1599,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest code(final AtomicInteger output)
+    public coinHttpRequest code(final AtomicInteger output)
 	    throws HttpRequestException {
 	output.set(code());
 	return this;
@@ -1695,7 +1695,7 @@ public class bithumb_HttpRequest {
      *
      * @return this request
      */
-    public bithumb_HttpRequest disconnect() {
+    public coinHttpRequest disconnect() {
 	getConnection().disconnect();
 	return this;
     }
@@ -1706,7 +1706,7 @@ public class bithumb_HttpRequest {
      * @param size
      * @return this request
      */
-    public bithumb_HttpRequest chunk(final int size) {
+    public coinHttpRequest chunk(final int size) {
 	getConnection().setChunkedStreamingMode(size);
 	return this;
     }
@@ -1722,7 +1722,7 @@ public class bithumb_HttpRequest {
      * @param size
      * @return this request
      */
-    public bithumb_HttpRequest bufferSize(final int size) {
+    public coinHttpRequest bufferSize(final int size) {
 	if (size < 1)
 	    throw new IllegalArgumentException("Size must be greater than zero");
 	bufferSize = size;
@@ -1758,7 +1758,7 @@ public class bithumb_HttpRequest {
      * @param uncompress
      * @return this request
      */
-    public bithumb_HttpRequest uncompress(final boolean uncompress) {
+    public coinHttpRequest uncompress(final boolean uncompress) {
 	this.uncompress = uncompress;
 	return this;
     }
@@ -1815,7 +1815,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest body(final AtomicReference<String> output)
+    public coinHttpRequest body(final AtomicReference<String> output)
 	    throws HttpRequestException {
 	output.set(body());
 	return this;
@@ -1830,8 +1830,8 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest body(final AtomicReference<String> output,
-									final String charset) throws HttpRequestException {
+    public coinHttpRequest body(final AtomicReference<String> output,
+								final String charset) throws HttpRequestException {
 	output.set(body(charset));
 	return this;
     }
@@ -1974,7 +1974,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest receive(final File file) throws HttpRequestException {
+    public coinHttpRequest receive(final File file) throws HttpRequestException {
 	final OutputStream output;
 	try {
 	    output = new BufferedOutputStream(new FileOutputStream(file),
@@ -1982,10 +1982,10 @@ public class bithumb_HttpRequest {
 	} catch (FileNotFoundException e) {
 	    throw new HttpRequestException(e);
 	}
-	return new CloseOperation<bithumb_HttpRequest>(output, ignoreCloseExceptions) {
+	return new CloseOperation<coinHttpRequest>(output, ignoreCloseExceptions) {
 
 	    @Override
-	    protected bithumb_HttpRequest run() throws HttpRequestException,
+	    protected coinHttpRequest run() throws HttpRequestException,
 		    IOException {
 		return receive(output);
 	    }
@@ -1999,7 +1999,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest receive(final OutputStream output)
+    public coinHttpRequest receive(final OutputStream output)
 	    throws HttpRequestException {
 	try {
 	    return copy(buffer(), output);
@@ -2015,7 +2015,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest receive(final PrintStream output)
+    public coinHttpRequest receive(final PrintStream output)
 	    throws HttpRequestException {
 	return receive((OutputStream) output);
     }
@@ -2027,13 +2027,13 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest receive(final Appendable appendable)
+    public coinHttpRequest receive(final Appendable appendable)
 	    throws HttpRequestException {
 	final BufferedReader reader = bufferedReader();
-	return new CloseOperation<bithumb_HttpRequest>(reader, ignoreCloseExceptions) {
+	return new CloseOperation<coinHttpRequest>(reader, ignoreCloseExceptions) {
 
 	    @Override
-	    public bithumb_HttpRequest run() throws IOException {
+	    public coinHttpRequest run() throws IOException {
 		final CharBuffer buffer = CharBuffer.allocate(bufferSize);
 		int read;
 		while ((read = reader.read(buffer)) != -1) {
@@ -2041,7 +2041,7 @@ public class bithumb_HttpRequest {
 		    appendable.append(buffer, 0, read);
 		    buffer.rewind();
 		}
-		return bithumb_HttpRequest.this;
+		return coinHttpRequest.this;
 	    }
 	}.call();
     }
@@ -2053,12 +2053,12 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest receive(final Writer writer) throws HttpRequestException {
+    public coinHttpRequest receive(final Writer writer) throws HttpRequestException {
 	final BufferedReader reader = bufferedReader();
-	return new CloseOperation<bithumb_HttpRequest>(reader, ignoreCloseExceptions) {
+	return new CloseOperation<coinHttpRequest>(reader, ignoreCloseExceptions) {
 
 	    @Override
-	    public bithumb_HttpRequest run() throws IOException {
+	    public coinHttpRequest run() throws IOException {
 		return copy(reader, writer);
 	    }
 	}.call();
@@ -2070,7 +2070,7 @@ public class bithumb_HttpRequest {
      * @param timeout
      * @return this request
      */
-    public bithumb_HttpRequest readTimeout(final int timeout) {
+    public coinHttpRequest readTimeout(final int timeout) {
 	getConnection().setReadTimeout(timeout);
 	return this;
     }
@@ -2081,7 +2081,7 @@ public class bithumb_HttpRequest {
      * @param timeout
      * @return this request
      */
-    public bithumb_HttpRequest connectTimeout(final int timeout) {
+    public coinHttpRequest connectTimeout(final int timeout) {
 	getConnection().setConnectTimeout(timeout);
 	return this;
     }
@@ -2093,7 +2093,7 @@ public class bithumb_HttpRequest {
      * @param value
      * @return this request
      */
-    public bithumb_HttpRequest header(final String name, final String value) {
+    public coinHttpRequest header(final String name, final String value) {
 	getConnection().setRequestProperty(name, value);
 	return this;
     }
@@ -2105,7 +2105,7 @@ public class bithumb_HttpRequest {
      * @param value
      * @return this request
      */
-    public bithumb_HttpRequest header(final String name, final Number value) {
+    public coinHttpRequest header(final String name, final Number value) {
 	return header(name, value != null ? value.toString() : null);
     }
 
@@ -2116,7 +2116,7 @@ public class bithumb_HttpRequest {
      * @param headers
      * @return this request
      */
-    public bithumb_HttpRequest headers(final Map<String, String> headers) {
+    public coinHttpRequest headers(final Map<String, String> headers) {
 	if (!headers.isEmpty())
 	    for (Entry<String, String> header : headers.entrySet())
 		header(header);
@@ -2129,7 +2129,7 @@ public class bithumb_HttpRequest {
      * @param header
      * @return this request
      */
-    public bithumb_HttpRequest header(final Entry<String, String> header) {
+    public coinHttpRequest header(final Entry<String, String> header) {
 	return header(header.getKey(), header.getValue());
     }
 
@@ -2356,7 +2356,7 @@ public class bithumb_HttpRequest {
      * @param userAgent
      * @return this request
      */
-    public bithumb_HttpRequest userAgent(final String userAgent) {
+    public coinHttpRequest userAgent(final String userAgent) {
 	return header(HEADER_USER_AGENT, userAgent);
     }
 
@@ -2366,7 +2366,7 @@ public class bithumb_HttpRequest {
      * @param referer
      * @return this request
      */
-    public bithumb_HttpRequest referer(final String referer) {
+    public coinHttpRequest referer(final String referer) {
 	return header(HEADER_REFERER, referer);
     }
 
@@ -2376,7 +2376,7 @@ public class bithumb_HttpRequest {
      * @param useCaches
      * @return this request
      */
-    public bithumb_HttpRequest useCaches(final boolean useCaches) {
+    public coinHttpRequest useCaches(final boolean useCaches) {
 	getConnection().setUseCaches(useCaches);
 	return this;
     }
@@ -2387,7 +2387,7 @@ public class bithumb_HttpRequest {
      * @param acceptEncoding
      * @return this request
      */
-    public bithumb_HttpRequest acceptEncoding(final String acceptEncoding) {
+    public coinHttpRequest acceptEncoding(final String acceptEncoding) {
 	return header(HEADER_ACCEPT_ENCODING, acceptEncoding);
     }
 
@@ -2397,7 +2397,7 @@ public class bithumb_HttpRequest {
      * @see #uncompress(boolean)
      * @return this request
      */
-    public bithumb_HttpRequest acceptGzipEncoding() {
+    public coinHttpRequest acceptGzipEncoding() {
 	return acceptEncoding(ENCODING_GZIP);
     }
 
@@ -2407,7 +2407,7 @@ public class bithumb_HttpRequest {
      * @param acceptCharset
      * @return this request
      */
-    public bithumb_HttpRequest acceptCharset(final String acceptCharset) {
+    public coinHttpRequest acceptCharset(final String acceptCharset) {
 	return header(HEADER_ACCEPT_CHARSET, acceptCharset);
     }
 
@@ -2489,7 +2489,7 @@ public class bithumb_HttpRequest {
      * @param authorization
      * @return this request
      */
-    public bithumb_HttpRequest authorization(final String authorization) {
+    public coinHttpRequest authorization(final String authorization) {
 	return header(HEADER_AUTHORIZATION, authorization);
     }
 
@@ -2499,7 +2499,7 @@ public class bithumb_HttpRequest {
      * @param proxyAuthorization
      * @return this request
      */
-    public bithumb_HttpRequest proxyAuthorization(final String proxyAuthorization) {
+    public coinHttpRequest proxyAuthorization(final String proxyAuthorization) {
 	return header(HEADER_PROXY_AUTHORIZATION, proxyAuthorization);
     }
 
@@ -2511,7 +2511,7 @@ public class bithumb_HttpRequest {
      * @param password
      * @return this request
      */
-    public bithumb_HttpRequest basic(final String name, final String password) {
+    public coinHttpRequest basic(final String name, final String password) {
 	return authorization("Basic " + Base64.encode(name + ':' + password));
     }
 
@@ -2523,7 +2523,7 @@ public class bithumb_HttpRequest {
      * @param password
      * @return this request
      */
-    public bithumb_HttpRequest proxyBasic(final String name, final String password) {
+    public coinHttpRequest proxyBasic(final String name, final String password) {
 	return proxyAuthorization("Basic "
 		+ Base64.encode(name + ':' + password));
     }
@@ -2534,7 +2534,7 @@ public class bithumb_HttpRequest {
      * @param ifModifiedSince
      * @return this request
      */
-    public bithumb_HttpRequest ifModifiedSince(final long ifModifiedSince) {
+    public coinHttpRequest ifModifiedSince(final long ifModifiedSince) {
 	getConnection().setIfModifiedSince(ifModifiedSince);
 	return this;
     }
@@ -2545,7 +2545,7 @@ public class bithumb_HttpRequest {
      * @param ifNoneMatch
      * @return this request
      */
-    public bithumb_HttpRequest ifNoneMatch(final String ifNoneMatch) {
+    public coinHttpRequest ifNoneMatch(final String ifNoneMatch) {
 	return header(HEADER_IF_NONE_MATCH, ifNoneMatch);
     }
 
@@ -2555,7 +2555,7 @@ public class bithumb_HttpRequest {
      * @param contentType
      * @return this request
      */
-    public bithumb_HttpRequest contentType(final String contentType) {
+    public coinHttpRequest contentType(final String contentType) {
 	return contentType(contentType, null);
     }
 
@@ -2566,8 +2566,8 @@ public class bithumb_HttpRequest {
      * @param charset
      * @return this request
      */
-    public bithumb_HttpRequest contentType(final String contentType,
-										   final String charset) {
+    public coinHttpRequest contentType(final String contentType,
+									   final String charset) {
 	if (charset != null && charset.length() > 0) {
 	    final String separator = "; " + PARAM_CHARSET + '=';
 	    return header(HEADER_CONTENT_TYPE, contentType + separator
@@ -2600,7 +2600,7 @@ public class bithumb_HttpRequest {
      * @param contentLength
      * @return this request
      */
-    public bithumb_HttpRequest contentLength(final String contentLength) {
+    public coinHttpRequest contentLength(final String contentLength) {
 	return contentLength(Integer.parseInt(contentLength));
     }
 
@@ -2610,7 +2610,7 @@ public class bithumb_HttpRequest {
      * @param contentLength
      * @return this request
      */
-    public bithumb_HttpRequest contentLength(final int contentLength) {
+    public coinHttpRequest contentLength(final int contentLength) {
 	getConnection().setFixedLengthStreamingMode(contentLength);
 	return this;
     }
@@ -2621,7 +2621,7 @@ public class bithumb_HttpRequest {
      * @param accept
      * @return this request
      */
-    public bithumb_HttpRequest accept(final String accept) {
+    public coinHttpRequest accept(final String accept) {
 	return header(HEADER_ACCEPT, accept);
     }
 
@@ -2630,7 +2630,7 @@ public class bithumb_HttpRequest {
      *
      * @return this request
      */
-    public bithumb_HttpRequest acceptJson() {
+    public coinHttpRequest acceptJson() {
 	return accept(CONTENT_TYPE_JSON);
     }
 
@@ -2642,12 +2642,12 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws IOException
      */
-    protected bithumb_HttpRequest copy(final InputStream input,
-									   final OutputStream output) throws IOException {
-	return new CloseOperation<bithumb_HttpRequest>(input, ignoreCloseExceptions) {
+    protected coinHttpRequest copy(final InputStream input,
+								   final OutputStream output) throws IOException {
+	return new CloseOperation<coinHttpRequest>(input, ignoreCloseExceptions) {
 
 	    @Override
-	    public bithumb_HttpRequest run() throws IOException {
+	    public coinHttpRequest run() throws IOException {
 		final byte[] buffer = new byte[bufferSize];
 		int read;
 		while ((read = input.read(buffer)) != -1) {
@@ -2655,7 +2655,7 @@ public class bithumb_HttpRequest {
 		    totalWritten += read;
 		    progress.onUpload(totalWritten, totalSize);
 		}
-		return bithumb_HttpRequest.this;
+		return coinHttpRequest.this;
 	    }
 	}.call();
     }
@@ -2668,12 +2668,12 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws IOException
      */
-    protected bithumb_HttpRequest copy(final Reader input, final Writer output)
+    protected coinHttpRequest copy(final Reader input, final Writer output)
 	    throws IOException {
-	return new CloseOperation<bithumb_HttpRequest>(input, ignoreCloseExceptions) {
+	return new CloseOperation<coinHttpRequest>(input, ignoreCloseExceptions) {
 
 	    @Override
-	    public bithumb_HttpRequest run() throws IOException {
+	    public coinHttpRequest run() throws IOException {
 		final char[] buffer = new char[bufferSize];
 		int read;
 		while ((read = input.read(buffer)) != -1) {
@@ -2681,7 +2681,7 @@ public class bithumb_HttpRequest {
 		    totalWritten += read;
 		    progress.onUpload(totalWritten, -1);
 		}
-		return bithumb_HttpRequest.this;
+		return coinHttpRequest.this;
 	    }
 	}.call();
     }
@@ -2692,7 +2692,7 @@ public class bithumb_HttpRequest {
      * @param callback
      * @return this request
      */
-    public bithumb_HttpRequest progress(final UploadProgress callback) {
+    public coinHttpRequest progress(final UploadProgress callback) {
 	if (callback == null)
 	    progress = UploadProgress.DEFAULT;
 	else
@@ -2700,7 +2700,7 @@ public class bithumb_HttpRequest {
 	return this;
     }
 
-    private bithumb_HttpRequest incrementTotalSize(final long size) {
+    private coinHttpRequest incrementTotalSize(final long size) {
 	if (totalSize == -1)
 	    totalSize = 0;
 	totalSize += size;
@@ -2714,7 +2714,7 @@ public class bithumb_HttpRequest {
      * @throws HttpRequestException
      * @throws IOException
      */
-    protected bithumb_HttpRequest closeOutput() throws IOException {
+    protected coinHttpRequest closeOutput() throws IOException {
 	progress(null);
 	if (output == null)
 	    return this;
@@ -2739,7 +2739,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    protected bithumb_HttpRequest closeOutputQuietly() throws HttpRequestException {
+    protected coinHttpRequest closeOutputQuietly() throws HttpRequestException {
 	try {
 	    return closeOutput();
 	} catch (IOException e) {
@@ -2753,7 +2753,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws IOException
      */
-    protected bithumb_HttpRequest openOutput() throws IOException {
+    protected coinHttpRequest openOutput() throws IOException {
 	if (output != null)
 	    return this;
 	getConnection().setDoOutput(true);
@@ -2771,7 +2771,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws IOException
      */
-    protected bithumb_HttpRequest startPart() throws IOException {
+    protected coinHttpRequest startPart() throws IOException {
 	if (!multipart) {
 	    multipart = true;
 	    contentType(CONTENT_TYPE_MULTIPART).openOutput();
@@ -2789,8 +2789,8 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws IOException
      */
-    protected bithumb_HttpRequest writePartHeader(final String name,
-												  final String filename) throws IOException {
+    protected coinHttpRequest writePartHeader(final String name,
+											  final String filename) throws IOException {
 	return writePartHeader(name, filename, null);
     }
 
@@ -2803,8 +2803,8 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws IOException
      */
-    protected bithumb_HttpRequest writePartHeader(final String name,
-												  final String filename, final String contentType) throws IOException {
+    protected coinHttpRequest writePartHeader(final String name,
+											  final String filename, final String contentType) throws IOException {
 	final StringBuilder partBuffer = new StringBuilder();
 	partBuffer.append("form-data; name=\"").append(name);
 	if (filename != null)
@@ -2823,7 +2823,7 @@ public class bithumb_HttpRequest {
      * @param part
      * @return this request
      */
-    public bithumb_HttpRequest part(final String name, final String part) {
+    public coinHttpRequest part(final String name, final String part) {
 	return part(name, null, part);
     }
 
@@ -2836,8 +2836,8 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest part(final String name, final String filename,
-									final String part) throws HttpRequestException {
+    public coinHttpRequest part(final String name, final String filename,
+								final String part) throws HttpRequestException {
 	return part(name, filename, null, part);
     }
 
@@ -2852,8 +2852,8 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest part(final String name, final String filename,
-									final String contentType, final String part)
+    public coinHttpRequest part(final String name, final String filename,
+								final String contentType, final String part)
 	    throws HttpRequestException {
 	try {
 	    startPart();
@@ -2873,7 +2873,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest part(final String name, final Number part)
+    public coinHttpRequest part(final String name, final Number part)
 	    throws HttpRequestException {
 	return part(name, null, part);
     }
@@ -2887,8 +2887,8 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest part(final String name, final String filename,
-									final Number part) throws HttpRequestException {
+    public coinHttpRequest part(final String name, final String filename,
+								final Number part) throws HttpRequestException {
 	return part(name, filename, part != null ? part.toString() : null);
     }
 
@@ -2900,7 +2900,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest part(final String name, final File part)
+    public coinHttpRequest part(final String name, final File part)
 	    throws HttpRequestException {
 	return part(name, null, part);
     }
@@ -2914,8 +2914,8 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest part(final String name, final String filename,
-									final File part) throws HttpRequestException {
+    public coinHttpRequest part(final String name, final String filename,
+								final File part) throws HttpRequestException {
 	return part(name, filename, null, part);
     }
 
@@ -2930,8 +2930,8 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest part(final String name, final String filename,
-									final String contentType, final File part)
+    public coinHttpRequest part(final String name, final String filename,
+								final String contentType, final File part)
 	    throws HttpRequestException {
 	final InputStream stream;
 	try {
@@ -2951,7 +2951,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest part(final String name, final InputStream part)
+    public coinHttpRequest part(final String name, final InputStream part)
 	    throws HttpRequestException {
 	return part(name, null, null, part);
     }
@@ -2967,8 +2967,8 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest part(final String name, final String filename,
-									final String contentType, final InputStream part)
+    public coinHttpRequest part(final String name, final String filename,
+								final String contentType, final InputStream part)
 	    throws HttpRequestException {
 	try {
 	    startPart();
@@ -2988,7 +2988,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest partHeader(final String name, final String value)
+    public coinHttpRequest partHeader(final String name, final String value)
 	    throws HttpRequestException {
 	return send(name).send(": ").send(value).send(CRLF);
     }
@@ -3000,7 +3000,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest send(final File input) throws HttpRequestException {
+    public coinHttpRequest send(final File input) throws HttpRequestException {
 	final InputStream stream;
 	try {
 	    stream = new BufferedInputStream(new FileInputStream(input));
@@ -3018,7 +3018,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest send(final byte[] input) throws HttpRequestException {
+    public coinHttpRequest send(final byte[] input) throws HttpRequestException {
 	if (input != null)
 	    incrementTotalSize(input.length);
 	return send(new ByteArrayInputStream(input));
@@ -3033,7 +3033,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest send(final InputStream input)
+    public coinHttpRequest send(final InputStream input)
 	    throws HttpRequestException {
 	try {
 	    openOutput();
@@ -3053,7 +3053,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest send(final Reader input) throws HttpRequestException {
+    public coinHttpRequest send(final Reader input) throws HttpRequestException {
 	try {
 	    openOutput();
 	} catch (IOException e) {
@@ -3061,10 +3061,10 @@ public class bithumb_HttpRequest {
 	}
 	final Writer writer = new OutputStreamWriter(output,
 		output.encoder.charset());
-	return new FlushOperation<bithumb_HttpRequest>(writer) {
+	return new FlushOperation<coinHttpRequest>(writer) {
 
 	    @Override
-	    protected bithumb_HttpRequest run() throws IOException {
+	    protected coinHttpRequest run() throws IOException {
 		return copy(input, writer);
 	    }
 	}.call();
@@ -3080,7 +3080,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest send(final CharSequence value)
+    public coinHttpRequest send(final CharSequence value)
 	    throws HttpRequestException {
 	try {
 	    openOutput();
@@ -3116,7 +3116,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest form(final Map<?, ?> values) throws HttpRequestException {
+    public coinHttpRequest form(final Map<?, ?> values) throws HttpRequestException {
 	return form(values, CHARSET_UTF8);
     }
 
@@ -3130,7 +3130,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest form(final Entry<?, ?> entry)
+    public coinHttpRequest form(final Entry<?, ?> entry)
 	    throws HttpRequestException {
 	return form(entry, CHARSET_UTF8);
     }
@@ -3146,7 +3146,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest form(final Entry<?, ?> entry, final String charset)
+    public coinHttpRequest form(final Entry<?, ?> entry, final String charset)
 	    throws HttpRequestException {
 	return form(entry.getKey(), entry.getValue(), charset);
     }
@@ -3162,7 +3162,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest form(final Object name, final Object value)
+    public coinHttpRequest form(final Object name, final Object value)
 	    throws HttpRequestException {
 	return form(name, value, CHARSET_UTF8);
     }
@@ -3179,8 +3179,8 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest form(final Object name, final Object value,
-									String charset) throws HttpRequestException {
+    public coinHttpRequest form(final Object name, final Object value,
+								String charset) throws HttpRequestException {
 	final boolean first = !form;
 	if (first) {
 	    contentType(CONTENT_TYPE_FORM, charset);
@@ -3209,7 +3209,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest form(final Map<?, ?> values, final String charset)
+    public coinHttpRequest form(final Map<?, ?> values, final String charset)
 	    throws HttpRequestException {
 	if (!values.isEmpty())
 	    for (Entry<?, ?> entry : values.entrySet())
@@ -3225,7 +3225,7 @@ public class bithumb_HttpRequest {
      * @return this request
      * @throws HttpRequestException
      */
-    public bithumb_HttpRequest trustAllCerts() throws HttpRequestException {
+    public coinHttpRequest trustAllCerts() throws HttpRequestException {
 	final HttpURLConnection connection = getConnection();
 	if (connection instanceof HttpsURLConnection)
 	    ((HttpsURLConnection) connection)
@@ -3242,7 +3242,7 @@ public class bithumb_HttpRequest {
      *
      * @return this request
      */
-    public bithumb_HttpRequest trustAllHosts() {
+    public coinHttpRequest trustAllHosts() {
 	final HttpURLConnection connection = getConnection();
 	if (connection instanceof HttpsURLConnection)
 	    ((HttpsURLConnection) connection)
@@ -3277,7 +3277,7 @@ public class bithumb_HttpRequest {
      * @param proxyPort
      * @return this request
      */
-    public bithumb_HttpRequest useProxy(final String proxyHost, final int proxyPort) {
+    public coinHttpRequest useProxy(final String proxyHost, final int proxyPort) {
 	if (connection != null)
 	    throw new IllegalStateException(
 		    "The connection has already been created. This method must be called before reading or writing to the request.");
@@ -3295,7 +3295,7 @@ public class bithumb_HttpRequest {
      *            - true fo follow redirects, false to not.
      * @return this request
      */
-    public bithumb_HttpRequest followRedirects(final boolean followRedirects) {
+    public coinHttpRequest followRedirects(final boolean followRedirects) {
 	getConnection().setInstanceFollowRedirects(followRedirects);
 	return this;
     }

@@ -1,7 +1,10 @@
-package CoinMerge.coinMergeKNKK.interlook.bithumb;
+package CoinMerge.coinMergeKNKK.interlook;
+
+import org.apache.tomcat.util.buf.HexUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -13,7 +16,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 
 //import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
-public class bithumb_Util {
+public class util {
 
     private static final String DEFAULT_ENCODING = "UTF-8";
     private static final String HMAC_SHA512 = "HmacSHA512";
@@ -47,7 +50,7 @@ public class bithumb_Util {
 		return result;
     }
 
-    public static byte[] hmacSha512(String value, String key) {
+    /*public static byte[] hmacSha512(String value, String key) {
 		try {
 		    SecretKeySpec keySpec = new SecretKeySpec(
 			    key.getBytes(DEFAULT_ENCODING), HMAC_SHA512);
@@ -61,7 +64,47 @@ public class bithumb_Util {
 		} catch (UnsupportedEncodingException e) {
 		    throw new RuntimeException(e);
 		}
-    }
+    }*/
+	public static String encodeURIComponent(String s)
+	{
+		String result = null;
+		try
+		{
+			result = URLEncoder.encode(s, "UTF-8")
+					.replaceAll("\\+", "%20")
+					.replaceAll("\\%21", "!")
+					.replaceAll("\\%27", "'")
+					.replaceAll("\\%28", "(")
+					.replaceAll("\\%29", ")")
+					.replaceAll("\\%26", "&")
+					.replaceAll("\\%3D", "=")
+					.replaceAll("\\%7E", "~");
+		}
+		// This exception should never occur.
+		catch (UnsupportedEncodingException e)
+		{
+			result = s;
+		}
+		return result;
+	}
+	public static byte[] hmacSha512(String value, String key){
+		try {
+			SecretKeySpec keySpec = new SecretKeySpec(
+					key.getBytes(DEFAULT_ENCODING), HMAC_SHA512);
+			Mac mac = Mac.getInstance(HMAC_SHA512);
+			mac.init(keySpec);
+
+			final byte[] macData = mac.doFinal( value.getBytes( ) );
+			byte[] hex = HexUtils.toHexString(macData).getBytes();
+			return hex;
+		} catch (NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
+		} catch (InvalidKeyException e) {
+			throw new RuntimeException(e);
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	public static String asHex(byte[] bytes){
 		Base64.Encoder encoder = Base64.getEncoder();
@@ -88,4 +131,6 @@ public class bithumb_Util {
 	
 		return string.toString();
     }
+
+
 }
