@@ -1,10 +1,10 @@
-package CoinMerge.coinMergeKNKK;
+package CoinMerge.coinMergeSpring;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CoinMergeKnkkApplicationTests {
+class CoinMergeSpringApplicationTests {
 
 	@Test
 	void contextLoads() {
