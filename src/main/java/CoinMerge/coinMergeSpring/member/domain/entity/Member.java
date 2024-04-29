@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -18,21 +19,22 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Table
 @Builder
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
-  @Column(length = 36)
+  @Column(length = 36, updatable = false)
   private String id;
 
-  @Column(length = 64, nullable = false, unique = true)
+  @Column(length = 64, nullable = false, unique = true, updatable = false)
   private String email;
 
   @Column(length = 128, nullable = false)
   private String password;
 
-  @Column(length = 128, nullable = false)
+  @Column(length = 128, nullable = false, updatable = false)
   private String salt;
 
   @Column(length = 32)
