@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 @Builder
 @Getter
@@ -25,6 +26,7 @@ public class MemberDto {
   private final String password;
 
   @NotNull
+  @Length(min = 3, max = 12)
   private final String nickname;
   private final String profileImageUri;
   private final String description;
