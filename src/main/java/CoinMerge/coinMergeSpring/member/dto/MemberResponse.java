@@ -10,4 +10,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberResponse {
   private final String id;
   private final String email;
+  private final String description;
+  private final String profileImageUri;
+  private final String nickname;
 }
