@@ -1,6 +1,6 @@
 package CoinMerge.coinMergeSpring.member.domain.entity;
 
-import CoinMerge.coinMergeSpring.exchange.entity.ExchangeConnection;
+import CoinMerge.coinMergeSpring.exchange.domain.entity.ExchangeConnection;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -57,7 +57,7 @@ public class Member {
   @Column(length = 20)
   private LocalDateTime updatedAt;
 
-  @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
   private List<ExchangeConnection> exchangeConnectionList;
 
   @Override
