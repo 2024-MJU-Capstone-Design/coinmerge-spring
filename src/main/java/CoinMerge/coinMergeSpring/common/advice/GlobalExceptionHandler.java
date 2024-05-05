@@ -1,5 +1,6 @@
 package CoinMerge.coinMergeSpring.common.advice;
 
+import CoinMerge.coinMergeSpring.member.exception.DuplicateNicknameException;
 import CoinMerge.coinMergeSpring.member.exception.MemberErrorResult;
 import CoinMerge.coinMergeSpring.member.exception.MemberException;
 import CoinMerge.coinMergeSpring.member.exception.UnathorizedException;
@@ -38,10 +39,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         .body(new ErrorResponse(HttpStatus.BAD_REQUEST.toString(), errorDescription));
   }
 
-  @ExceptionHandler({MemberException.class})
-  public ResponseEntity<ErrorResponse> handleMemberApiExeption(final MemberException exception) {
-    log.warn("MemberException occured: ", exception);
-    return this.makeErrorResponseEntity(MemberErrorResult.DUPLICATE_MEMBER_REGISTER);
+  @ExceptionHandler({MemberException.class, DuplicateNicknameException.class})
+  public ResponseEntity<ErrorResponse> handleMemberApiExeption(final Exception exception) {
+    if(exception instanceof DuplicateNicknameException) {
+      log.warn("DuplicateNicknameException occured: ", exception);
+      return this.makeErrorResponseEntity(MemberErrorResult.DUPLICATE_NICKNAME);
+    }else {
+      log.warn("MemberException occured: ", exception);
+      return this.makeErrorResponseEntity(MemberErrorResult.DUPLICATE_MEMBER_REGISTER);
+    }
   }
 
   @ExceptionHandler({UnathorizedException.class})
