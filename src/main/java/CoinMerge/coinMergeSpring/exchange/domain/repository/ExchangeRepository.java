@@ -1,6 +1,6 @@
-package CoinMerge.coinMergeSpring.exchange.repository;
+package CoinMerge.coinMergeSpring.exchange.domain.repository;
 
-import CoinMerge.coinMergeSpring.exchange.entity.Exchange;
+import CoinMerge.coinMergeSpring.exchange.domain.entity.Exchange;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

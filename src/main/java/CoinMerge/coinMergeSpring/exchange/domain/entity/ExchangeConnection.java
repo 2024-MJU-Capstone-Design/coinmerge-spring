@@ -1,7 +1,6 @@
-package CoinMerge.coinMergeSpring.exchange.entity;
+package CoinMerge.coinMergeSpring.exchange.domain.entity;
 
 import CoinMerge.coinMergeSpring.member.domain.entity.Member;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,11 +28,11 @@ public class ExchangeConnection {
   @Column(name="exchange_connection_id")
   private long id;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name="member_id", referencedColumnName = "member_id")
   private Member member;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name="exchange_id", referencedColumnName = "exchange_id")
   private Exchange exchange;
 

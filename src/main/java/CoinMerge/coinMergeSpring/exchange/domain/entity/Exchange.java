@@ -1,5 +1,6 @@
-package CoinMerge.coinMergeSpring.exchange.entity;
+package CoinMerge.coinMergeSpring.exchange.domain.entity;
 
+import CoinMerge.coinMergeSpring.asset.domain.entity.Asset;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -23,7 +25,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Exchange {
-  @Id()
+  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "exchange_id")
   private long id;
@@ -35,8 +37,11 @@ public class Exchange {
   private String nameEng;
   private String logo;
 
-  @OneToMany(mappedBy = "exchange", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "exchange", cascade = CascadeType.REMOVE)
   private List<ExchangeConnection> exchangeConnectionList;
+
+  @OneToMany(mappedBy = "exchange", cascade = CascadeType.REMOVE)
+  private List<Asset> assetList;
 
   @Override
   public String toString() {
@@ -46,5 +51,9 @@ public class Exchange {
         ", nameEng='" + nameEng + '\'' +
         ", logo='" + logo + '\'' +
         '}';
+  }
+
+  public Exchange(long id) {
+    this.id = id;
   }
 }
