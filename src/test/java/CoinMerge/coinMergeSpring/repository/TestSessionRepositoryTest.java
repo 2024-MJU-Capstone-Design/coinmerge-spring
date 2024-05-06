@@ -1,6 +1,7 @@
 package CoinMerge.coinMergeSpring.repository;
 
-import CoinMerge.coinMergeSpring.entity.TestSession;
+import CoinMerge.coinMergeSpring.entity.repository.redisRepository;
+import CoinMerge.coinMergeSpring.entity.session;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -15,15 +16,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(Lifecycle.PER_CLASS)
 public class TestSessionRepositoryTest {
   @Autowired
-  TestRedisRepository testRedisRepository;
+  redisRepository testRedisRepository;
 
   @Test
   @DisplayName("redis connection test")
   void redisConnectionTest() {
-    TestSession session = TestSession.builder().id("test-id").sessionId("test-session-id").build();
+    session session = CoinMerge.coinMergeSpring.entity.session.builder().id("test-id").sessionId("test-session-id").build();
     testRedisRepository.save(session);
 
-    TestSession findSessionResult = testRedisRepository.findById("test-id").get();
+    CoinMerge.coinMergeSpring.entity.session findSessionResult = testRedisRepository.findById("test-id").get();
     assertEquals(findSessionResult.getId(), "test-id");
   }
 }
