@@ -1,5 +1,6 @@
 package CoinMerge.coinMergeSpring.member.domain.entity;
 
+import CoinMerge.coinMergeSpring.asset.domain.entity.Asset;
 import CoinMerge.coinMergeSpring.exchange.domain.entity.ExchangeConnection;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -59,6 +60,13 @@ public class Member {
 
   @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
   private List<ExchangeConnection> exchangeConnectionList;
+
+  @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+  private List<Asset> assetList;
+
+  public Member(String id) {
+    this.id = id;
+  }
 
   @Override
   public String toString() {
