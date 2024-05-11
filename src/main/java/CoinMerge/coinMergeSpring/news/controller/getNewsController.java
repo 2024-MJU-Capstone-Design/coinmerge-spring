@@ -1,4 +1,4 @@
-package CoinMerge.coinMergeSpring.news;
+package CoinMerge.coinMergeSpring.news.controller;
 
 import CoinMerge.coinMergeSpring.news.dto.newsDTO;
 import CoinMerge.coinMergeSpring.news.service.newsService;
@@ -15,13 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static CoinMerge.coinMergeSpring.news.service.newsService.callNewsGetter;
+
 @Controller
 @Getter @Setter
 @Slf4j
 public class getNewsController {
 
 
-    @Autowired private newsRepository newsRepository;
+    @Autowired private CoinMerge.coinMergeSpring.news.domain.repository.newsRepository newsRepository;
+    @Autowired
+    newsService newsService;
 
     @RequestMapping("/search_news")
     public String getNews(HttpServletRequest request) throws IOException, InterruptedException, ParseException, JSONException {
@@ -32,7 +36,7 @@ public class getNewsController {
         //System.out.println(searchResult);
         for (newsDTO newsDTO : searchResult) {
             System.out.println(newsDTO);
-            //newsRepository.save(newsDTO);
+            newsRepository.save(newsDTO);
         }
 
         return "news";

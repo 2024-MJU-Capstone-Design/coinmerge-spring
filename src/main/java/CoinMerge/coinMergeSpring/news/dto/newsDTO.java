@@ -4,13 +4,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Getter
 @Table(name = "news")
+@Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class newsDTO {
     @Id @Column(name = "title")
@@ -20,13 +19,18 @@ public class newsDTO {
     @Column(name = "link")
     String link;
     @Column(name = "date")
-    String date;
+    String published_at;
 
-    public newsDTO(String title, String content, String link, String date) {
+    @Column(name = "tokenId")
+    String tokenId;
+
+    @Builder
+    public newsDTO(String title, String content, String link, String published_at, String tokenId) {
         this.title = title;
         this.content = content;
         this.link = link;
-        this.date = date;
+        this.published_at = published_at;
+        this.tokenId = tokenId;
     }
 
     @Override
@@ -35,7 +39,7 @@ public class newsDTO {
                 "title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", link='" + link + '\'' +
-                ", date='" + date + '\'' +
+                ", date='" + published_at + '\'' +
                 '}';
     }
 }

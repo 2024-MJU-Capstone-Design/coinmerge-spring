@@ -51,12 +51,12 @@ public class newsService {
                 .build();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
-        ArrayList<newsDTO> news = parser(response);//response로 받은 내용을 파싱해서 배열에 담는다.
+        ArrayList<newsDTO> news = parser(response, search);//response로 받은 내용을 파싱해서 배열에 담는다.
 
         return news;
     }
 
-    private static ArrayList<newsDTO> parser(HttpResponse<String> response) throws JSONException, IOException {
+    private static ArrayList<newsDTO> parser(HttpResponse<String> response, String search) throws JSONException, IOException {
         //newsDTO를 만들어서 배열에 넣는디.
         JSONObject obj= new JSONObject(response.body());
         JSONArray arr = obj.getJSONArray("items");
@@ -67,34 +67,41 @@ public class newsService {
             JSONObject temp = arr.getJSONObject(i);
             String title = (String) temp.get("title");//제목
             String content = getNewsContent((String) temp.get("link"));//뉴스의 본문을 가져온다.
-            if(content.length()==0)continue;
+            if(content == null)continue;
+            if(content.length() == 0)content = title;
             String link = (String) temp.get("link");//뉴스의 링크를 가져온다.
             String date = (String) temp.get("pubDate");//뉴스 등록 시간
-            news.add(new newsDTO(title,content,link,date));
+            news.add(new newsDTO(title,content,link,date,search));
         }
         return news;
     }
 
     private static String getNewsContent(String newsUrl) throws IOException {
-        //네이버 news의 링크를 타고 들어가서 본문을 읽어온다.
-        URL url = new URL(newsUrl);
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
+        try {
+            //네이버 news의 링크를 타고 들어가서 본문을 읽어온다.
+            URL url = new URL(newsUrl);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
 
-        //해당 링크로 받아와서 response에 저장
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
+
+            //해당 링크로 받아와서 response에 저장
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+
+            //response에서 본문 읽어오기
+            Document doc = Jsoup.parse(response.toString());
+            Elements bodyElement = doc.getElementsByClass("go_trans _article_content");
+            return bodyElement.text().toString();
+        } catch (Exception e) {
+            return null;
         }
-        in.close();
 
-        //response에서 본문 읽어오기
-        Document doc = Jsoup.parse(response.toString());
-        Elements bodyElement = doc.getElementsByClass("go_trans _article_content");
-
-        return bodyElement.text().toString();
     }
 
 
