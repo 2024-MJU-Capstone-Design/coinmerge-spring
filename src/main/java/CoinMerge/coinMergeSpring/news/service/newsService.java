@@ -8,6 +8,7 @@ import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.springframework.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -66,9 +67,14 @@ public class newsService {
         for (int i = 0; i < arr.length(); i++) {
             JSONObject temp = arr.getJSONObject(i);
             String title = (String) temp.get("title");//제목
+            title = StringUtils.delete(title, "<b>");
+            title = StringUtils.delete(title, "</b>");
             String content = getNewsContent((String) temp.get("link"));//뉴스의 본문을 가져온다.
             if(content == null)continue;
             if(content.length() == 0)content = title;
+            content = StringUtils.delete(content, "<b>");
+            content = StringUtils.delete(content, "</b>");
+
             String link = (String) temp.get("link");//뉴스의 링크를 가져온다.
             String date = (String) temp.get("pubDate");//뉴스 등록 시간
             news.add(new newsDTO(title,content,link,date,search));
