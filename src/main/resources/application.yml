@@ -2,8 +2,7 @@ spring:
   jpa:
     database: postgresql
     hibernate:
-      ddl-auto: update
-      use-new-id-generator-mappings: false
+      ddl-auto: create-drop
     show-sql: true
   datasource:
     hikari:
