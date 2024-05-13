@@ -33,4 +33,12 @@ public class EncryptUtil {
     mac.init(hmacKeySpec);
     return bytesToHex(mac.doFinal(text.getBytes()));
   }
+
+  public static String generateSignatureHmacSha512(String text, String key)
+      throws NoSuchAlgorithmException, InvalidKeyException {
+    SecretKeySpec hmacKeySpec = new SecretKeySpec(key.getBytes(), "HmacSHA512");
+    Mac mac = Mac.getInstance("HmacSHA512");
+    mac.init(hmacKeySpec);
+    return bytesToHex(mac.doFinal(text.getBytes()));
+  }
 }
