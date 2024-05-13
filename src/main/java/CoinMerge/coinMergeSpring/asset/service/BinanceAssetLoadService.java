@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -36,13 +37,11 @@ public class BinanceAssetLoadService implements AssetLoadService {
   }
 
   @Override
-  public Asset[] request(String memberId, long exchangeId, String accessKey, String privateKey)
+  public List<Asset> request(String memberId, long exchangeId, String accessKey, String privateKey)
       throws NoSuchAlgorithmException, InvalidKeyException {
 
     WebClient webClient = WebClient.builder().build();
     URI uri = generateUri(accessKey, privateKey);
-
-    System.out.println(uri);
 
     BinanceAssetDto[] response = webClient.post()
         .uri(uri)
@@ -53,9 +52,9 @@ public class BinanceAssetLoadService implements AssetLoadService {
         .block();
 
     // asset 처리
-    Asset[] assets = Arrays.stream(response)
+    List<Asset> assets = Arrays.stream(response)
         .map(res -> Asset.toAssetFromBinanceAssetDto(memberId, exchangeId, res))
-        .toArray(Asset[]::new);
+        .toList();
 
     return assets;
   }
