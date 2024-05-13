@@ -1,13 +1,13 @@
 package CoinMerge.coinMergeSpring.news.domain.repository;
 
-import CoinMerge.coinMergeSpring.news.dto.newsDTO;
+import CoinMerge.coinMergeSpring.news.domain.entity.News;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface newsRepository extends JpaRepository<newsDTO, Long>{
-    newsDTO save(newsDTO newsDTO);
-    Optional<newsDTO> findById(Long id);
+public interface NewsRepository extends JpaRepository<News, Long>{
+    News save(News newsDTO);
+    Optional<News> findById(Long id);
 }

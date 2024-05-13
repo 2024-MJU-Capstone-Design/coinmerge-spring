@@ -1,4 +1,4 @@
-package CoinMerge.coinMergeSpring.news.dto;
+package CoinMerge.coinMergeSpring.news.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,26 +11,22 @@ import lombok.*;
 @Table(name = "news")
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class newsDTO {
-    @Id @Column(name = "title")
+public class News {
+    @Id @Column(name = "title", length = 500)
     String title;
-    @Column(name = "content")
+    @Column(name = "content", length = 5000)
     String content;
-    @Column(name = "link")
+    @Column(name = "link", length = 500)
     String link;
-    @Column(name = "date")
+    @Column(name = "date", length = 500)
     String published_at;
 
-    @Column(name = "tokenId")
-    String tokenId;
-
     @Builder
-    public newsDTO(String title, String content, String link, String published_at, String tokenId) {
+    public News(String title, String content, String link, String published_at, String tokenId) {
         this.title = title;
         this.content = content;
         this.link = link;
         this.published_at = published_at;
-        this.tokenId = tokenId;
     }
 
     @Override
