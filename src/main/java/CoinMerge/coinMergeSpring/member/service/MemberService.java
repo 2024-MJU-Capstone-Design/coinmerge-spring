@@ -100,4 +100,12 @@ public class MemberService {
         .nickname(member.getNickname()).description(member.getDescription())
         .profileImageUri(member.getProfileImageUri()).build();
   }
+
+  public MemberResponse getMember(final String memberId) {
+    final Optional<Member> optionalMember = memberRepository.findById(memberId);
+    final Member member = optionalMember.orElseThrow(
+        () -> new MemberException(MemberErrorResult.MEMBER_NOT_FOUND));
+
+    return MemberResponse.toMemberResponse(member);
+  }
 }

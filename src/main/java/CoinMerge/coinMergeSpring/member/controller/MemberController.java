@@ -87,4 +87,13 @@ public class MemberController {
 
     return ResponseEntity.status(HttpStatus.OK).body((memberService.updateMember(memberId, memberUpdateRequest)));
   }
+
+  @LoginRequired
+  @GetMapping("/member")
+  public ResponseEntity<MemberResponse> getMember(HttpServletRequest httpServletRequest) {
+    HttpSession session = httpServletRequest.getSession();
+    String memberId = SessionUtil.getMemberId(session);
+
+    return ResponseEntity.ok(memberService.getMember(memberId));
+  }
 }
