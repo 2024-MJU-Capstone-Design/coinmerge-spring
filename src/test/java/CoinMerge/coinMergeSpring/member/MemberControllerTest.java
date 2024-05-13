@@ -1,4 +1,4 @@
-package CoinMerge.coinMergeSpring.Controller;
+package CoinMerge.coinMergeSpring.member;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -52,7 +52,7 @@ public class MemberControllerTest {
 
   @Test
   public void 회원가입실패_데이터부족() throws Exception {
-    final String url = "/member/regist";
+    final String url = "/member";
 
     final ResultActions resultActions = mockMvc.perform(
         MockMvcRequestBuilders.post(url)

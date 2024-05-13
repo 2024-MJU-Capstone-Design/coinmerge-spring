@@ -1,4 +1,4 @@
-package CoinMerge.coinMergeSpring.repository;
+package CoinMerge.coinMergeSpring.member;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

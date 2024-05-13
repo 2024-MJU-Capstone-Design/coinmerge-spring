@@ -1,12 +1,17 @@
 package CoinMerge.coinMergeSpring.member.domain.entity;
 
+import CoinMerge.coinMergeSpring.asset.domain.entity.Asset;
+import CoinMerge.coinMergeSpring.exchange.domain.entity.ExchangeConnection;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,7 +30,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 public class Member {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
-  @Column(length = 36, updatable = false)
+  @Column(length = 36, updatable = false, name="member_id")
   private String id;
 
   @Column(length = 64, nullable = false, unique = true, updatable = false)
@@ -52,6 +57,16 @@ public class Member {
   @UpdateTimestamp
   @Column(length = 20)
   private LocalDateTime updatedAt;
+
+  @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+  private List<ExchangeConnection> exchangeConnectionList;
+
+  @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+  private List<Asset> assetList;
+
+  public Member(String id) {
+    this.id = id;
+  }
 
   @Override
   public String toString() {
