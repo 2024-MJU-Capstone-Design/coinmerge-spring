@@ -37,7 +37,12 @@ public class BithumbAssetLoadService implements AssetLoadService {
   }
 
   @Override
-  public List<Asset> request(String memberId, long exchangeId, String accessKey, String privateKey)
+  public List<Asset> request(String memberId, long exchangeId, String accessKey, String privateKey) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException {
+    return null;
+  }
+
+  @Override
+  public List<Asset> requestAsset(String memberId, long exchangeId, String accessKey, String privateKey)
       throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException {
     URI uri = generateUri(accessKey, privateKey);
     WebClient webClient = WebClient.builder().build();
@@ -58,6 +63,21 @@ public class BithumbAssetLoadService implements AssetLoadService {
     LinkedHashMap<String, String> data = response.get("data");
 
     return parseAssetResponse(memberId, exchangeId, data);
+  }
+
+
+  public List<Asset> requestDeposit(String memberId, long exchangeId, String accessKey, String privateKey) {
+    return null;
+  }
+
+
+  public List<Asset> requestWithdraw(String memberId, long exchangeId, String accessKey, String privateKey) {
+    return null;
+  }
+
+  @Override
+  public List<Asset> requestTransaction(String memberId, long exchangeId, String accessKey, String privateKey) {
+    return null;
   }
 
   private List<Asset> parseAssetResponse(String memberId, long exchangeId,
