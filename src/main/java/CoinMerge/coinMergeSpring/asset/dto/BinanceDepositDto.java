@@ -21,4 +21,5 @@ public class BinanceDepositDto {
     private String confirmTimes;
     private String unlockConfirm;
     private String walletType;
+
 }

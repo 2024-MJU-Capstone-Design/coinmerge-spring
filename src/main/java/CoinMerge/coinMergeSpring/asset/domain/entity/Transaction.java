@@ -1,5 +1,7 @@
 package CoinMerge.coinMergeSpring.asset.domain.entity;
 
+import CoinMerge.coinMergeSpring.asset.dto.BinanceTransactionDto;
+import CoinMerge.coinMergeSpring.asset.dto.BinanceWithdrawDto;
 import jakarta.persistence.Entity;
 import lombok.*;
 
@@ -23,4 +25,9 @@ public class Transaction {
     private int toAmount;
     private int toDollarAmount;
     private String timeStamp;
+
+    public static Transaction toHistoryFromBinanceTransactionDto(BinanceTransactionDto BinanceTransactionDto) {
+
+        return Transaction.builder().build();
+    }
 }

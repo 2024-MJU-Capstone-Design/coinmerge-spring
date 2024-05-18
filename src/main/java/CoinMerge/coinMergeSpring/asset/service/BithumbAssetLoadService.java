@@ -2,6 +2,7 @@ package CoinMerge.coinMergeSpring.asset.service;
 
 import CoinMerge.coinMergeSpring.asset.domain.entity.Asset;
 import CoinMerge.coinMergeSpring.asset.domain.entity.Token;
+import CoinMerge.coinMergeSpring.asset.dto.BinanceTransactionDto;
 import CoinMerge.coinMergeSpring.common.utils.EncryptUtil;
 import CoinMerge.coinMergeSpring.common.utils.ParserUtil;
 import CoinMerge.coinMergeSpring.exchange.domain.entity.Exchange;
@@ -27,24 +28,21 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Service
 public class BithumbAssetLoadService implements AssetLoadService {
 
-  private static String url = "https://api.bithumb.com/info/balance";
 
   @Override
-  public URI generateUri(String accessKey, String privateKey) {
+  public URI generateUri(String accessKey, String privateKey,String url) {
     MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
     return UriComponentsBuilder.fromUriString(url).queryParams(map).build()
         .encode(StandardCharsets.UTF_8).toUri();
   }
 
-  @Override
-  public List<Asset> request(String memberId, long exchangeId, String accessKey, String privateKey) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException {
-    return null;
-  }
+
 
   @Override
   public List<Asset> requestAsset(String memberId, long exchangeId, String accessKey, String privateKey)
       throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException {
-    URI uri = generateUri(accessKey, privateKey);
+    String url = "https://api.bithumb.com/info/balance";
+    URI uri = generateUri(accessKey, privateKey, url);
     WebClient webClient = WebClient.builder().build();
     String timestamp = String.valueOf(System.currentTimeMillis());
     String encryptData = ParserUtil.encodeStringToUTF8(
@@ -76,7 +74,7 @@ public class BithumbAssetLoadService implements AssetLoadService {
   }
 
   @Override
-  public List<Asset> requestTransaction(String memberId, long exchangeId, String accessKey, String privateKey) {
+  public List<BinanceTransactionDto> requestTransaction(String memberId, long exchangeId, String accessKey, String privateKey) {
     return null;
   }
 

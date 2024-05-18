@@ -1,8 +1,8 @@
 package CoinMerge.coinMergeSpring.asset;
 
 import CoinMerge.coinMergeSpring.asset.domain.entity.Asset;
-import CoinMerge.coinMergeSpring.asset.domain.entity.InputOutput;
-import CoinMerge.coinMergeSpring.asset.dto.BinanceDepositDto;
+import CoinMerge.coinMergeSpring.asset.domain.entity.DepositAndWithdraw;
+import CoinMerge.coinMergeSpring.asset.dto.BinanceTransactionDto;
 import CoinMerge.coinMergeSpring.asset.service.BinanceAssetLoadService;
 import CoinMerge.coinMergeSpring.asset.service.BithumbAssetLoadService;
 import java.io.UnsupportedEncodingException;
@@ -20,7 +20,8 @@ public class AssetLoadServiceTest {
   BinanceAssetLoadService binanceAssetLoadService;
   @Autowired
   BithumbAssetLoadService bithumbAssetLoadService;
-
+//1715788142463
+//7776000000
   @Test
   public void 바이낸스_자산불러오기_성공() throws NoSuchAlgorithmException, InvalidKeyException {
     List<Asset> assets = binanceAssetLoadService.requestAsset(
@@ -36,23 +37,23 @@ public class AssetLoadServiceTest {
 
   @Test
   public void 바이낸스_입금내역_불러오기_성공() throws NoSuchAlgorithmException, InvalidKeyException {
-    List<InputOutput> response = binanceAssetLoadService.requestDeposit(
+    List<DepositAndWithdraw> response = binanceAssetLoadService.requestDeposit(
             "userId",
             1,
-            "Z7tQEzHql23BiYeTn3XH4sHvhXaYGV58nM7P84VpsH9Qxd1fsA3gtSxHzi6CWOue",
-            "GpjJPsD72QqowNbjWUVegnQMCT7uoVte5SV7MvDNCbxGqHhbPbSu0uF3U7dUid2B");
+            "4nhwLbKcUQxXGqVFjz8luWXQ87LDOR98pQMgjq5eHQrHZlH1dsG826hoKBn0xb8a",
+            "vOM2md4SYqQaY76uvivutcNGqfFnpCfTrigEFrlWH3Ho4EtGciAP92yPVFFt7kPe");
 
     System.out.println(response.size());
 
-    for (InputOutput inputOutput : response) {
+    for (DepositAndWithdraw depositAndWithdraw : response) {
       System.out.println(222);
-      System.out.println(inputOutput.getId() + " " + inputOutput.getAmount());
+      System.out.println(depositAndWithdraw.getId() + " " + depositAndWithdraw.getAmount());
     }
   }
 
   @Test
   public void 바이낸스_출금내역_불러오기_성공() throws NoSuchAlgorithmException, InvalidKeyException {
-    List<InputOutput> response = binanceAssetLoadService.requestWithdraw(
+    List<DepositAndWithdraw> response = binanceAssetLoadService.requestWithdraw(
             "userId",
             1,
             "Z7tQEzHql23BiYeTn3XH4sHvhXaYGV58nM7P84VpsH9Qxd1fsA3gtSxHzi6CWOue",
@@ -60,14 +61,21 @@ public class AssetLoadServiceTest {
 
     System.out.println(response.size());
 
-    for (InputOutput inputOutput : response) {
+    for (DepositAndWithdraw depositAndWithdraw : response) {
       System.out.println(222);
-      System.out.println(inputOutput.getId() + " " + inputOutput.getAmount());
+      System.out.println(depositAndWithdraw.getId() + " " + depositAndWithdraw.getAmount());
     }
   }
 
   @Test
-  public void 바이낸스_투자내역불러오기_성공() {
+  public void 바이낸스_투자내역불러오기_성공() throws NoSuchAlgorithmException, InvalidKeyException {
+    binanceAssetLoadService.requestTransaction(
+            "userId",
+            1,
+            "Z7tQEzHql23BiYeTn3XH4sHvhXaYGV58nM7P84VpsH9Qxd1fsA3gtSxHzi6CWOue",
+            "GpjJPsD72QqowNbjWUVegnQMCT7uoVte5SV7MvDNCbxGqHhbPbSu0uF3U7dUid2B");
+
+    //System.out.println(response.size());
 
   }
 

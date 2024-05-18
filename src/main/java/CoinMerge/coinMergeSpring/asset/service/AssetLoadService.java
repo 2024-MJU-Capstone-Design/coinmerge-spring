@@ -7,16 +7,15 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-import CoinMerge.coinMergeSpring.asset.domain.entity.InputOutput;
+import CoinMerge.coinMergeSpring.asset.dto.BinanceTransactionDto;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface AssetLoadService {
 
-  URI generateUri(String publicKey, String privateKey)
+  URI generateUri(String publicKey, String privateKey, String url)
       throws NoSuchAlgorithmException, InvalidKeyException;
-  List<Asset> request(String memberId, long exchangeId, String accessKey, String privateKey)
-          throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException;
+
   List<Asset> requestAsset(String memberId, long exchangeId, String accessKey, String privateKey)
       throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException;
 
@@ -24,7 +23,7 @@ public interface AssetLoadService {
 
   //출금
 
-  List<Asset> requestTransaction(String memberId, long exchangeId, String accessKey, String privateKey);
+  List<BinanceTransactionDto> requestTransaction(String memberId, long exchangeId, String accessKey, String privateKey) throws NoSuchAlgorithmException, InvalidKeyException;
 
   void load(Asset asset);
 }

@@ -28,11 +28,14 @@ public class EncryptUtil {
 
   public static String generateSignatureHmacSha256(String text, String key)
       throws NoSuchAlgorithmException, InvalidKeyException {
+    System.out.println(text);
     SecretKeySpec hmacKeySpec = new SecretKeySpec(key.getBytes(), "HmacSHA256");
     Mac mac = Mac.getInstance("HmacSHA256");
     mac.init(hmacKeySpec);
     return bytesToHex(mac.doFinal(text.getBytes()));
   }
+
+
 
   public static String generateSignatureHmacSha512(String text, String key)
       throws NoSuchAlgorithmException, InvalidKeyException {

@@ -42,9 +42,9 @@ public class AssetService {
       Exchange exchange = exchangeConnection.getExchange();
       List<Asset> assets;
       if(exchange.getNameKor() == "바이낸스") {
-         assets = binanceAssetLoadService.request(memberId, exchange.getId(), exchangeConnection.getAccess_key(), exchangeConnection.getSecret_key());
+         assets = binanceAssetLoadService.requestAsset(memberId, exchange.getId(), exchangeConnection.getAccess_key(), exchangeConnection.getSecret_key());
       }else {
-        assets = bithumbAssetLoadService.request(memberId, exchange.getId(), exchangeConnection.getAccess_key(), exchangeConnection.getSecret_key());
+        assets = bithumbAssetLoadService.requestAsset(memberId, exchange.getId(), exchangeConnection.getAccess_key(), exchangeConnection.getSecret_key());
       }
 
       assetRepository.deleteAll(member.getAssetList());
