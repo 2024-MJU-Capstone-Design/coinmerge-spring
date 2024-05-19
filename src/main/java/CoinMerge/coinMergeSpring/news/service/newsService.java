@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,7 @@ public class newsService {
     }
 
     String apiURL = "https://openapi.naver.com/v1/search/news.json?query=" + text
-        + "&display=10&start=1&sort=date";
+        + "&display=100&start=1&sort=date";
 
     return apiURL;
   }
@@ -88,12 +89,15 @@ public class newsService {
       title = StringUtils.delete(title, "<b>");
       title = StringUtils.delete(title, "</b>");
       String content = getNewsContent((String) temp.get("link"));//뉴스의 본문을 가져온다.
+
       if (content == null) {
         continue;
       }
+
       if (content.length() == 0) {
-        content = title;
+        continue;
       }
+
       content = StringUtils.delete(content, "<b>");
       content = StringUtils.delete(content, "</b>");
 
@@ -122,7 +126,15 @@ public class newsService {
 
       //response에서 본문 읽어오기
       Document doc = Jsoup.parse(response.toString());
+
       Elements bodyElement = doc.getElementsByClass("go_trans _article_content");
+      Elements bodyElementSeoul = doc.getElementsByClass("viewContent body18 color700");
+      System.out.println(bodyElement.text());
+      if(bodyElement.text().length() == 0)
+      if(bodyElement.text().length() == 0)bodyElement = doc.getElementsByClass("article_view");
+      if(bodyElement.text().length() == 0)bodyElement = doc.getElementsByClass("viewer");
+      if(bodyElement.text().length() == 0)bodyElement = doc.getElementsByClass("view_text");
+
       return bodyElement.text().toString();
     } catch (Exception e) {
       return null;
