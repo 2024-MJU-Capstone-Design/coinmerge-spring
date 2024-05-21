@@ -13,6 +13,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.util.HtmlUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -94,7 +95,7 @@ public class newsService {
         continue;
       }
 
-      if (content.length() == 0) {
+      if (content.length() < 10 || content.length() > 2000 ) {
         continue;
       }
 
@@ -128,18 +129,34 @@ public class newsService {
       Document doc = Jsoup.parse(response.toString());
 
       Elements bodyElement = doc.getElementsByClass("go_trans _article_content");
-      Elements bodyElementSeoul = doc.getElementsByClass("viewContent body18 color700");
-      System.out.println(bodyElement.text());
-      if(bodyElement.text().length() == 0)
-      if(bodyElement.text().length() == 0)bodyElement = doc.getElementsByClass("article_view");
-      if(bodyElement.text().length() == 0)bodyElement = doc.getElementsByClass("viewer");
-      if(bodyElement.text().length() == 0)bodyElement = doc.getElementsByClass("view_text");
+      if(bodyElement.size() == 0)bodyElement = doc.getElementsByClass("viewContent body18 color700");
+      if(bodyElement.size() == 0)bodyElement = doc.getElementsByClass("article_view");
+      if(bodyElement.size() == 0)bodyElement = doc.getElementsByClass("viewer");
+      if(bodyElement.size() == 0)bodyElement = doc.getElementsByClass("view_text");
+      Elements bodyElements = getElements(bodyElement, "div");
+      bodyElements = getElements(bodyElement, "table");
+      bodyElements = getElements(bodyElement, "br");
+      bodyElements = getElements(bodyElement, "span");
+      bodyElements = getElements(bodyElement, "em");
+
 
       return bodyElement.text().toString();
     } catch (Exception e) {
       return null;
     }
 
+  }
+
+  private static Elements getElements(Elements bodyElement, String tag) {
+
+    for (Element element : bodyElement) {
+      Elements divElements = element.select(tag);
+      for (Element divElement : divElements) {
+        divElement.remove();
+      }
+    }
+
+    return bodyElement;
   }
 
 
