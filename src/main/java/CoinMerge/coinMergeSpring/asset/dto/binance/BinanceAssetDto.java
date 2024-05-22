@@ -1,4 +1,4 @@
-package CoinMerge.coinMergeSpring.asset.dto;
+package CoinMerge.coinMergeSpring.asset.dto.binance;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

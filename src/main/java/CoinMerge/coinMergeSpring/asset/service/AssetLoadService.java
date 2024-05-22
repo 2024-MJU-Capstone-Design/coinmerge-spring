@@ -7,7 +7,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-import CoinMerge.coinMergeSpring.asset.dto.BinanceTransactionDto;
+import CoinMerge.coinMergeSpring.asset.dto.binance.BinanceTransactionDto;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,8 +22,6 @@ public interface AssetLoadService {
   //입금
 
   //출금
-
-  List<BinanceTransactionDto> requestTransaction(String memberId, long exchangeId, String accessKey, String privateKey) throws NoSuchAlgorithmException, InvalidKeyException;
 
   void load(Asset asset);
 }

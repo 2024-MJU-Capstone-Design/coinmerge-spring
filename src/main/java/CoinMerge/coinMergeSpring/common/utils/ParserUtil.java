@@ -1,7 +1,16 @@
 package CoinMerge.coinMergeSpring.common.utils;
 
+import CoinMerge.coinMergeSpring.asset.dto.binance.BinanceTransactionDto;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ParserUtil {
   public static String bytesToHex(byte[] bytes) {
@@ -41,5 +50,21 @@ public class ParserUtil {
     } catch (UnsupportedEncodingException e) {
       throw new RuntimeException("Unsupported encoding: UTF-8", e);
     }
+  }
+
+
+  public static List<BinanceTransactionDto> binanceTransactionHistoryParser(Map<String, LinkedHashMap> response) {
+    ObjectMapper objectMapper = new ObjectMapper();
+    JsonNode rootNode = objectMapper.valueToTree(response);
+    JsonNode listNode = rootNode.get("list");
+
+    List<BinanceTransactionDto> tradeFlows = new ArrayList<>();
+    if (listNode != null && listNode.isArray()) {
+      tradeFlows = objectMapper.convertValue(listNode, new TypeReference<List<BinanceTransactionDto>>() {});
+    }
+
+    // Print the list items
+
+    return tradeFlows;
   }
 }

@@ -2,7 +2,7 @@ package CoinMerge.coinMergeSpring.asset.service;
 
 import CoinMerge.coinMergeSpring.asset.domain.entity.Asset;
 import CoinMerge.coinMergeSpring.asset.domain.entity.Token;
-import CoinMerge.coinMergeSpring.asset.dto.BinanceTransactionDto;
+import CoinMerge.coinMergeSpring.asset.dto.binance.BinanceTransactionDto;
 import CoinMerge.coinMergeSpring.common.utils.EncryptUtil;
 import CoinMerge.coinMergeSpring.common.utils.ParserUtil;
 import CoinMerge.coinMergeSpring.exchange.domain.entity.Exchange;
@@ -73,7 +73,7 @@ public class BithumbAssetLoadService implements AssetLoadService {
     return null;
   }
 
-  @Override
+
   public List<BinanceTransactionDto> requestTransaction(String memberId, long exchangeId, String accessKey, String privateKey) {
     return null;
   }

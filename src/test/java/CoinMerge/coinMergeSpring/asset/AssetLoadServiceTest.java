@@ -2,7 +2,7 @@ package CoinMerge.coinMergeSpring.asset;
 
 import CoinMerge.coinMergeSpring.asset.domain.entity.Asset;
 import CoinMerge.coinMergeSpring.asset.domain.entity.DepositAndWithdraw;
-import CoinMerge.coinMergeSpring.asset.dto.BinanceTransactionDto;
+import CoinMerge.coinMergeSpring.asset.dto.binance.BinanceTransactionDto;
 import CoinMerge.coinMergeSpring.asset.service.BinanceAssetLoadService;
 import CoinMerge.coinMergeSpring.asset.service.BithumbAssetLoadService;
 import java.io.UnsupportedEncodingException;
@@ -20,8 +20,7 @@ public class AssetLoadServiceTest {
   BinanceAssetLoadService binanceAssetLoadService;
   @Autowired
   BithumbAssetLoadService bithumbAssetLoadService;
-//1715788142463
-//7776000000
+
   @Test
   public void 바이낸스_자산불러오기_성공() throws NoSuchAlgorithmException, InvalidKeyException {
     List<Asset> assets = binanceAssetLoadService.requestAsset(
@@ -72,13 +71,21 @@ public class AssetLoadServiceTest {
     binanceAssetLoadService.requestTransaction(
             "userId",
             1,
+            "Z7tQEzHql23BiYeTn3XH4sHvhRXaYGV58nM7P84VpsH9Qxd1fsA3gtSxHzi6CWOue",
+            "GpjJPsD72QqowNbjWUVegnQMCT7uoVte5SV7MvDNCbxGqHhbPbSu0uF3U7dUid2B");
+
+    //System.out.println(response.size());
+  }
+  @Test
+  public void 바이낸스_스냅샷불러오기_성공() throws NoSuchAlgorithmException, InvalidKeyException {
+    binanceAssetLoadService.requestSnapshot(
+            "userId",
+            1,
             "Z7tQEzHql23BiYeTn3XH4sHvhXaYGV58nM7P84VpsH9Qxd1fsA3gtSxHzi6CWOue",
             "GpjJPsD72QqowNbjWUVegnQMCT7uoVte5SV7MvDNCbxGqHhbPbSu0uF3U7dUid2B");
 
     //System.out.println(response.size());
-
   }
-
   @Test
   public void 빗썸_자산불러오기_성공()
       throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException {
