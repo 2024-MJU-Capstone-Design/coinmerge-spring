@@ -2,11 +2,12 @@ package CoinMerge.coinMergeSpring.asset.service;
 
 import static CoinMerge.coinMergeSpring.asset.domain.entity.Transaction.toHistoryFromBinanceTransactionDto;
 import static CoinMerge.coinMergeSpring.common.utils.EncryptUtil.generateSignatureHmacSha256;
-import static CoinMerge.coinMergeSpring.common.utils.ParserUtil.binanceTransactionHistoryParser;
+import static CoinMerge.coinMergeSpring.common.utils.ParserUtil.*;
 
 
 import CoinMerge.coinMergeSpring.asset.domain.entity.Asset;
 import CoinMerge.coinMergeSpring.asset.domain.entity.DepositAndWithdraw;
+import CoinMerge.coinMergeSpring.asset.domain.entity.Snapshot;
 import CoinMerge.coinMergeSpring.asset.domain.entity.Transaction;
 import CoinMerge.coinMergeSpring.asset.domain.repository.AssetRepository;
 import CoinMerge.coinMergeSpring.asset.domain.repository.DepositWithdrawRepository;
@@ -16,6 +17,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
+import CoinMerge.coinMergeSpring.asset.domain.repository.SnapshotRepository;
 import CoinMerge.coinMergeSpring.asset.domain.repository.TransactionRepository;
 import CoinMerge.coinMergeSpring.asset.dto.binance.*;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +37,8 @@ public class BinanceAssetLoadService implements AssetLoadService {
   DepositWithdrawRepository depositWithdrawRepository;
   @Autowired
   TransactionRepository transactionRepository;
+  @Autowired
+  SnapshotRepository snapshotRepository;
 
   @Override
   public URI generateUri(String accessKey, String privateKey, String url)
@@ -213,37 +217,44 @@ public class BinanceAssetLoadService implements AssetLoadService {
 
 
 
-  public List<DepositAndWithdraw> requestSnapshot(String memberId, long exchangeId, String accessKey, String privateKey) throws NoSuchAlgorithmException, InvalidKeyException {
-    List<DepositAndWithdraw> out = new ArrayList<>();
+  public List<Snapshot> requestSnapshot(String memberId, long exchangeId, String accessKey, String privateKey) throws NoSuchAlgorithmException, InvalidKeyException {
+    List<Snapshot> out = new ArrayList<>();
     long minus = 86400000L * 30;
     long end = System.currentTimeMillis();
     long start = end - minus;
+    long timestamp = 0L;
     for (int i = 0; i < 5; i++) {
-        WebClient webClient = WebClient.builder().build();
-        String url = "https://api.binance.com/sapi/v1/accountSnapshot";
-        URI uri = generateUriType(accessKey, privateKey, url, start, end, "SPOT");
+      WebClient webClient = WebClient.builder().build();
+      String url = "https://api.binance.com/sapi/v1/accountSnapshot";
+      URI uri = generateUriType(accessKey, privateKey, url, start, end, "SPOT");
 
-        Map<String, LinkedHashMap> response = webClient.get()
-                .uri(uri)
-                .header("X-MBX-APIKEY", accessKey)
-                .retrieve()
-                .bodyToMono(Map.class)
-                .doOnError(err -> System.out.println(err.getMessage()))
-                .block();
+      Map<String, LinkedHashMap> response = webClient.get()
+              .uri(uri)
+              .header("X-MBX-APIKEY", accessKey)
+              .retrieve()
+              .bodyToMono(Map.class)
+              .doOnError(err -> System.out.println(err.getMessage()))
+              .block();
 
-      /*List<DepositAndWithdraw> assets = Arrays.stream(response)
-              .map(res -> DepositAndWithdraw.toHistoryFromBinanceWithdrawDto(res))
-              .toList();*/
-        System.out.println(response.get("snapshotVos"));
 
+      System.out.println(binanceSnapshotParser(response));
+      //LinkedHashMap arr = response.get("snapshotVos");
+      //System.out.println(arr.get("data"));
+      for (BinanceSnapshotDto s : snapshotParser(timestamp, response)) {
+        out.add(Snapshot.toSnapshotFromBinanceSnapshotDto(memberId, s));
+      }
 
 
       end = start - 1;
       start = end - minus;
-
     }
+
+    saveSnapshot(out);
+
     return out;
   }
+
+
 
   private void saveDepositWithdraw(List<DepositAndWithdraw> out) {
     for (DepositAndWithdraw depositAndWithdraw : out) {
@@ -257,6 +268,14 @@ public class BinanceAssetLoadService implements AssetLoadService {
     for (Transaction transaction : out) {
       if(transactionRepository.existsById(transaction.getId())){
         transactionRepository.save(transaction);
+      }
+    }
+  }
+
+  private void saveSnapshot(List<Snapshot> out) {
+    for (Snapshot snapshot : out) {
+      if(snapshotRepository.existsById(snapshot.getId())){
+        snapshotRepository.save(snapshot);
       }
     }
   }

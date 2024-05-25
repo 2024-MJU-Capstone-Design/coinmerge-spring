@@ -11,5 +11,6 @@ public class BinanceSnapshotDto {
     private String asset;
     private String free;
     private String locked;
+    private long timestamp;
 
 }

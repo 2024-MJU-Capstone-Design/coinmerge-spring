@@ -1,5 +1,6 @@
 package CoinMerge.coinMergeSpring.asset.domain.entity;
 
+import CoinMerge.coinMergeSpring.asset.dto.binance.BinanceSnapshotDto;
 import CoinMerge.coinMergeSpring.member.domain.entity.Member;
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,16 +14,25 @@ import lombok.*;
 @ToString
 public class Snapshot {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "snapshot_id")
-    private long id;
+    private String id;
 
     @ManyToOne
     @JoinColumn(name = "member_id", referencedColumnName = "member_id")
     private Member member;
 
-    private int asset;
+    private String token;
     private String timeStamp;
-    private int exchangePrice;
+    private String exchangePrice;
+    public static Snapshot toSnapshotFromBinanceSnapshotDto(String memberId, BinanceSnapshotDto binanceSnapshotDto) {
+        Member member = new Member(memberId);
 
+        return Snapshot.builder()
+                .id(binanceSnapshotDto.getTimestamp() + binanceSnapshotDto.getAsset())
+                .member(member)
+                .token(binanceSnapshotDto.getAsset())
+                .timeStamp(String.valueOf(binanceSnapshotDto.getTimestamp()))
+                .exchangePrice(binanceSnapshotDto.getFree())
+                .build();
+    }
 }
