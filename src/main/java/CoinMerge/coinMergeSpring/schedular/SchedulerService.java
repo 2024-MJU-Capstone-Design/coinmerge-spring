@@ -19,9 +19,9 @@ public class SchedulerService {
     @Autowired
     NewsRepository newsRepository;
 
-    String[]token = {"비트코인", "이더리움", "리플"};
+    String[]token = {"비트코인", "이더리움", "리플", "솔라나"};
 
-    @Scheduled(cron="*/30 * * * * *")
+    @Scheduled(cron="0 0 * * *")
     public void scheduleRun() throws JSONException, IOException, ParseException, InterruptedException {
         List<News> out = new ArrayList<>();
         for (String s : token) {
