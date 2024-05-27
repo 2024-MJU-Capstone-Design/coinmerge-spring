@@ -36,4 +36,6 @@ public class AssetController {
     String memberId = SessionUtil.getMemberId(session);
     return ResponseEntity.ok(assetService.updateAssets(memberId));
   }
+
+
 }

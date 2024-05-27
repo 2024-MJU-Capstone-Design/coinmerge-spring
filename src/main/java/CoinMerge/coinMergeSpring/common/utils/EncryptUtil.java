@@ -1,5 +1,7 @@
 package CoinMerge.coinMergeSpring.common.utils;
 
+import org.springframework.data.redis.connection.convert.StringToDataTypeConverter;
+
 import static CoinMerge.coinMergeSpring.common.utils.ParserUtil.bytesToHex;
 
 import java.security.InvalidKeyException;
@@ -28,6 +30,7 @@ public class EncryptUtil {
 
   public static String generateSignatureHmacSha256(String text, String key)
       throws NoSuchAlgorithmException, InvalidKeyException {
+
     SecretKeySpec hmacKeySpec = new SecretKeySpec(key.getBytes(), "HmacSHA256");
     Mac mac = Mac.getInstance("HmacSHA256");
     mac.init(hmacKeySpec);

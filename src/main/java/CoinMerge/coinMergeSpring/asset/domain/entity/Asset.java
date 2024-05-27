@@ -1,6 +1,6 @@
 package CoinMerge.coinMergeSpring.asset.domain.entity;
 
-import CoinMerge.coinMergeSpring.asset.dto.BinanceAssetDto;
+import CoinMerge.coinMergeSpring.asset.dto.binance.BinanceAssetDto;
 import CoinMerge.coinMergeSpring.exchange.domain.entity.Exchange;
 import CoinMerge.coinMergeSpring.member.domain.entity.Member;
 import jakarta.persistence.Column;
@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

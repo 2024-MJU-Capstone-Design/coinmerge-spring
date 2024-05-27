@@ -17,8 +17,7 @@ import CoinMerge.coinMergeSpring.exchange.domain.entity.Exchange;
 import CoinMerge.coinMergeSpring.exchange.domain.entity.ExchangeConnection;
 import CoinMerge.coinMergeSpring.member.domain.entity.Member;
 import CoinMerge.coinMergeSpring.member.domain.repository.MemberRepository;
-import CoinMerge.coinMergeSpring.member.exception.MemberErrorResult;
-import CoinMerge.coinMergeSpring.member.exception.MemberException;
+
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -30,8 +29,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 @ExtendWith(MockitoExtension.class)
 public class AssetServiceTest {
@@ -53,7 +50,7 @@ public class AssetServiceTest {
     Member member = getMember(1);
     System.out.println(member);
     doReturn(Optional.of(member)).when(memberRepository).findById("id");
-    doReturn(getAssets(1)).when(binanceAssetLoadService).request(anyString(), anyLong(), anyString(), anyString());
+    doReturn(getAssets(1)).when(binanceAssetLoadService).requestDeposit(anyString(), anyLong(), anyString(), anyString());
     doNothing().when(assetRepository).deleteAll(anyCollection());
 
     // when
@@ -69,8 +66,8 @@ public class AssetServiceTest {
     // given
     Member member = getMember(2);
     doReturn(Optional.of(member)).when(memberRepository).findById("id");
-    doReturn(getAssets(2)).when(binanceAssetLoadService).request(anyString(), anyLong(), anyString(), anyString());
-    doReturn(getAssets(2)).when(bithumbAssetLoadService).request(anyString(), anyLong(), anyString(), anyString());
+    doReturn(getAssets(2)).when(binanceAssetLoadService).requestDeposit(anyString(), anyLong(), anyString(), anyString());
+    doReturn(getAssets(2)).when(bithumbAssetLoadService).requestDeposit(anyString(), anyLong(), anyString(), anyString());
     doNothing().when(assetRepository).deleteAll(anyCollection());
 
     // when
